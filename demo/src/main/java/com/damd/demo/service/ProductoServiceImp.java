@@ -2,6 +2,7 @@ package com.damd.demo.service;
 
 import com.damd.demo.model.Producto;
 import com.damd.demo.repository.ProductRepository;
+import java.util.List;
 
 import java.util.Optional;
 
@@ -31,5 +32,10 @@ public class ProductoServiceImp implements ProductoService{
     @Override
     public void delete(Integer id) {
         productoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> findAll() {
+        return productoRepository.findAll();
     }
 }
