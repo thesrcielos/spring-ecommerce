@@ -10,11 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,7 +62,7 @@ public class ProductosController {
         return "productos/edit";
     }
     
-    @PutMapping("/update")
+    @PostMapping("/update")
     public String update(Producto producto,@RequestParam("img") MultipartFile file) throws IOException{
         Producto p = productoService.get(producto.getId()).get();
         if(file.isEmpty()){
@@ -80,7 +78,7 @@ public class ProductosController {
         return "redirect:/productos";
     }
     
-    @DeleteMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
         Producto p = productoService.get(id).get();
         if(!p.getImagen().equals("default.jpg")){
